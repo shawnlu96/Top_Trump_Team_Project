@@ -6,6 +6,7 @@ public class TTView {
 	
 	private TTModel model;
 	private ArrayList<Card> cards;		//for testing
+
 	//...constructor
 	public TTView(TTModel model) {
 		this.model = model;
@@ -17,6 +18,13 @@ public class TTView {
 	public void showCards() {
 		for(int i=0;i<cards.size();i++) {
 			System.out.println(cards.get(i).toString());
+		}
+	}
+	
+	public void showScores() {
+		System.out.println("Scores:");
+		for(int i=0;i<model.getPlayers().size();i++) {
+			System.out.println("   " + model.getPlayers().get(i).getPlayerName() + ": " + model.getPlayers().get(i).getGameWon());
 		}
 	}
 
@@ -103,5 +111,13 @@ public class TTView {
 			System.out.println(":\t" + model.getPlayers().get(i).getPlayerCards().size());
 		}
 	}
+	
+	public void showStatistics() {
+		DbConnection d = new DbConnection();
+		System.out.println(d.statisticsToString());
+		d.closeConnection(d);
+	}
+	
+
 	
 }

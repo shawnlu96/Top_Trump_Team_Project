@@ -26,6 +26,7 @@ public class TTModel {
 	private int indexOfHumanPlayer;
 	private int indexOfFinalWinner;
 	private int roundNumber = 0;			//round number initialised as 0
+	private int drawNumbers = 0;
 	
 	//...Constructor
 	public TTModel() {
@@ -209,6 +210,14 @@ public class TTModel {
 
 	public void setHumanPlayerEliminated(boolean isHumanPlayerEliminated) {
 		this.isHumanPlayerEliminated = isHumanPlayerEliminated;
+	}
+
+	public int getDrawNumbers() {
+		return drawNumbers;
+	}
+
+	public void addDrawNumbers() {
+		drawNumbers++;
 	}
 	
 }

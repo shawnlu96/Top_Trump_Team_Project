@@ -1,12 +1,14 @@
 package commandline;
 import java.util.ArrayList;
 
+import javax.xml.stream.events.Characters;
+
 public class Player {
 	
 	private String playerName;
 	private ArrayList<Card> playerCards;
 	private boolean isEliminated = false;
-	private int gameWon;
+	private int gameWon = 0;
 	public Player(String playerName){
 		 	this.playerName = playerName;
 	}
@@ -42,7 +44,15 @@ public class Player {
 		return gameWon;
 	}
 
-	public void setGameWon(int gameWon) {
-		this.gameWon = gameWon;
+	public void addGameWon() {
+		gameWon++;
+	}
+	
+	public int hashCode() {
+		if(playerName.equals("You")) {
+			return 1;
+		}else {
+			return (int)(playerName.charAt(playerName.length()-1) - '0' + 1);
+		}
 	}
 }

@@ -11,7 +11,6 @@ public class Game {
 		TTController controller = new TTController(model,view);
 		controller.startGame();
 		
-		
 	}
 	
 	

@@ -7,7 +7,7 @@ public class TTController {
 	
 	private TTModel model;
 	private TTView view;
-	
+
 	private Scanner s = new Scanner(System.in);
 //	private ArrayList<Player> players;
 	public TTController(TTModel model, TTView view){
@@ -51,7 +51,7 @@ public class TTController {
 				if(model.getPlayers().get(i).getPlayerCards().size()==40) {		//if anyone have 40 cards
 					model.setEnd(true);						//set game end
 					model.setIndexOfFinalWinner(i);
-					view.showFinalWinner();
+					
 					break;
 				}
 			}
@@ -61,10 +61,13 @@ public class TTController {
 			if(model.getCommunalPile().size() + model.getPlayers().get(model.getIndexOfRoundWinner()).getPlayerCards().size() == 40) {
 				model.setEnd(true);
 				model.setIndexOfFinalWinner(model.getIndexOfRoundWinner());
-				view.showFinalWinner();
+				
 				break;
 			}
 		}
+		view.showFinalWinner();
+		view.showScores();
+		view.showStatistics();						//only test it with database
 	}
 	
 	//method to play an entire round of this game
@@ -103,6 +106,7 @@ public class TTController {
 		}
 		if(!isDraw) {		//if it is not a draw
 			model.setIndexOfRoundWinner(winnerIndex);	//first update the index of round winner in the model
+			model.getPlayers().get(winnerIndex).addGameWon();		//add gameWon
 			model.setIndexOfWinningCard((model.getPlayers().get(winnerIndex).getPlayerCards().get(0).getCardIndex()));
 			for(int i=0;i<cardsThisRound.size();i++) {	//for each cards in this round 
 				model.getPlayers().get(winnerIndex).getPlayerCards().add(cardsThisRound.get(i));	//add all cards to the winner's cards
@@ -191,6 +195,24 @@ public class TTController {
 			}
 		}
 		return index;
+	}
+	
+	public void setStatistics() {
+		DbConnection d = new DbConnection();
+		int[] r = new int[model.getPlayers().size()];
+		for(int i=0;i<model.getPlayers().size();i++) {
+			r[i] = model.getPlayers().get(i).getGameWon();
+		}
+		d.setWinnerPlayer(d,model.getPlayers().get(model.getIndexOfFinalWinner()).hashCode());
+		d.setDraws(d, model.getDrawNumbers());
+		d.setRounds(d,model.getRoundNumber());
+		d.setPlayers(d,model.getPlayers().size());
+		d.setPlayerRoundsWon(d,r);
+		
+		d.insertGameValues(d);
+		
+		d.closeConnection(d);
+
 	}
 	
 }

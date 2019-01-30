@@ -12,9 +12,9 @@ public class TopTrumpsCLIApplication {
 	 */
 	public static void main(String[] args) {
 
-		boolean writeGameLogsToFile = false; // Should we write game logs to file?
-		if (args[0].equalsIgnoreCase("true")) writeGameLogsToFile=true; // Command line selection
-		
+//		boolean writeGameLogsToFile = false; // Should we write game logs to file?
+//		if (args[0].equalsIgnoreCase("true")) writeGameLogsToFile=true; // Command line selection
+	
 		// State
 		boolean userWantsToQuit = false; // flag to check whether the user wants to quit the application
 		
@@ -24,7 +24,10 @@ public class TopTrumpsCLIApplication {
 			// ----------------------------------------------------
 			// Add your game logic here based on the requirements
 			// ----------------------------------------------------
-			
+			TTModel model = new TTModel();
+			TTView view = new TTView(model);
+			TTController controller = new TTController(model,view);
+			controller.startGame();
 			userWantsToQuit=true; // use this when the user wants to exit the game
 			
 		}
