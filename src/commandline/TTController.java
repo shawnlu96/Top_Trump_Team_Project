@@ -87,7 +87,7 @@ public class TTController {
 //			System.out.print(String.format("%9s:", model.getPlayers().get(cardsThisRound.get(i).getPlayerIndex()).getPlayerName()));
 //			System.out.println(cardsThisRound.get(i).toString());
 //		}
-		s.nextLine();
+//		s.nextLine();
 		//decide if it is draw or not. if not, which one is the winner
 		for(int i=0;i<cardsThisRound.size();i++) {
 			temp = cardsThisRound.get(i).getAttributes()[indexOfCharacteristic];	//get current characteristic
@@ -150,10 +150,28 @@ public class TTController {
 	}
 	
 	public int getAttributeIndex() {
-		int index;
-		index = s.nextInt();
+		int index = 0;
+		boolean isValid = false;
+		do {
+			Scanner s1 = new Scanner(s.nextLine());
+			if(s1.hasNextInt()) {
+				index = s1.nextInt();
+				if(index>0&&index<6) {
+					isValid = true;
+					break;
+				}else {
+					System.out.println("Wrong Input!");
+				}
+			}else {
+				System.out.println("Wrong Input!");
+			}
+			s1.close();
+		}while(!isValid);
+		
 		return index-1;
 	}
+	
+
 	
 	//the AI
 	public int getHighestAttributeIndex(int playerIndex) {

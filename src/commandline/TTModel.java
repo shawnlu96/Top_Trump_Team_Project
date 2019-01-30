@@ -38,10 +38,25 @@ public class TTModel {
 	}
 	
 	public void setNumbersOfAIPlayers() {
-		int number;
+		int number = 0;
+		boolean isValid = false;
 		Scanner s = new Scanner(System.in);
 		System.out.println("Enter the number of AI players");
-		number = s.nextInt();
+		do {
+			Scanner s1 = new Scanner(s.nextLine());
+			if(s1.hasNextInt()) {
+				number = s1.nextInt();
+				if(number>0&&number<5) {
+					isValid = true;
+					break;
+				}else {
+					System.out.println("Wrong Input!");
+				}
+			}else {
+				System.out.println("Wrong Input!");
+			}
+			s1.close();
+		}while(!isValid);
 		AIPlayerNumber = number;
 	}
 	
