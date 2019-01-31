@@ -67,6 +67,7 @@ public class TTController {
 		}
 		view.showFinalWinner();
 		view.showScores();
+		setStatistics();
 		view.showStatistics();						//only test it with database
 	}
 	
@@ -133,6 +134,7 @@ public class TTController {
 				model.getPlayers().get(cardsThisRound.get(i).getPlayerIndex()).getPlayerCards().remove(0);					//remove everyone's first card
 				cardsThisRound.get(i).setPlayerIndex(-1);	//set player index to -1
 			}
+			model.addDrawNumbers();
 			view.showDrawMessage();
 //			view.showAllPlayerCardsCount();			//for testing
 			if(!model.isHumanPlayerEliminated()) {	
