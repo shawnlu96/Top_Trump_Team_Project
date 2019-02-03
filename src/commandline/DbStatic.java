@@ -23,8 +23,9 @@ public class DbStatic
 		d.closeConnection(d);
 	}
 	
-	public static void dbGet() {
+	public static void showStatistics() {
 		System.out.println(d.statisticsToString());
+		System.out.println();
 
 	}
 }

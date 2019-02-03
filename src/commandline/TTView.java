@@ -111,13 +111,5 @@ public class TTView {
 			System.out.println(":\t" + model.getPlayers().get(i).getPlayerCards().size());
 		}
 	}
-	
-	public void showStatistics() {
-		DbConnection d = new DbConnection();
-		System.out.println(d.statisticsToString());
-		d.closeConnection(d);
-	}
-	
 
-	
 }

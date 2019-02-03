@@ -8,12 +8,12 @@ public class TTController {
 	private TTModel model;
 	private TTView view;
 
+	private String testLog = "";
 	private Scanner s = new Scanner(System.in);
-//	private ArrayList<Player> players;
 	public TTController(TTModel model, TTView view){
 		this.model = model;
 		this.view = view;
-//		this.players = model.getPlayers();
+		startGame();
 	}
 	
 	public void startGame() {
@@ -68,7 +68,7 @@ public class TTController {
 		view.showFinalWinner();
 		view.showScores();
 		setStatistics();
-		view.showStatistics();						//only test it with database
+		DbStatic.showStatistics();						//only test it with database
 	}
 	
 	//method to play an entire round of this game

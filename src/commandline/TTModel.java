@@ -42,6 +42,7 @@ public class TTModel {
 		int number = 0;
 		boolean isValid = false;
 		Scanner s = new Scanner(System.in);
+		System.out.println();
 		System.out.println("Enter the number of AI players");
 		do {
 			Scanner s1 = new Scanner(s.nextLine());
