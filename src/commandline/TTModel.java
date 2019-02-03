@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class TTModel {
 	
-	private static final String DECK_PATH = "StarCitizenDeck_Original.txt";
+	private static final String DECK_PATH = "DotaDeck.txt";
 	
 	private int AIPlayerNumber;
 	private ArrayList<Card> cards = new ArrayList<Card>();
@@ -27,12 +27,18 @@ public class TTModel {
 	private int indexOfFinalWinner;
 	private int roundNumber = 0;			//round number initialised as 0
 	private int drawNumbers = 0;
+	public static TestLog testLog;
 	
 	//...Constructor
 	public TTModel() {
+		testLog = new TestLog(this);
 		readCards(new File(DECK_PATH));
 		setNumbersOfAIPlayers();
+		testLog.addLine("Shuffled deck");
 		Collections.shuffle(cards);			//cards randomly shuffled
+		for(Card c:cards){					//add shuffled deck to testLog
+			testLog.addLog(c.toString());
+		}
 		initialisePlayers();				//initialise the player objects
 		distributePlayerCards();			//initialise cards for each player
 		setIndexOfHumanPlayer();
@@ -89,13 +95,15 @@ public class TTModel {
 			}
 			players.get(i).setPlayerCards(playerCards);
 		}
+		testLog.addPlayerCardsInfo();
 	}
 	
 	public void readCards(File f) {
+		testLog.addLine("deck read from file");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(f));
-			String[] cardInfo = null;			//temp String array for storing the info of each card
-			String line = null;					//temp String for storing each line read
+			String[] cardInfo;			//temp String array for storing the info of each card
+			String line;					//temp String for storing each line read
 			line = br.readLine();						//read the first line
 			attributeNames = line.split(" ");			//get characteristic name
 			while((line = br.readLine())!=null) {
@@ -105,6 +113,7 @@ public class TTModel {
 					characteristics[i-1] = Integer.parseInt(cardInfo[i]);
 				}
 				cards.add(new Card(cardInfo[0], characteristics));
+				testLog.addLog(cards.get(cards.size()-1).toString());		//add the cards info to the testLog
 			}
 			br.close();							//buffered reader closed
 		} catch (IOException e) {

@@ -32,12 +32,18 @@ public class TopTrumpsCLIApplication {
 				System.out.print("Enter the number for your selection: ");
 				choice = s.next();
 				if (choice.equals("1")) {
-					DbStatic.showStatistics();
+					DbConnection d = new DbConnection();
+					System.out.println(d.statisticsToString());
+					d.closeConnection(d);
+					System.out.println();
 					break;
 				} else if (choice.equals("2")) {
 					TTModel model = new TTModel();
 					TTView view = new TTView(model);
 					TTController controller = new TTController(model, view);
+					if(writeGameLogsToFile){
+						model.testLog.writeLog();
+					}
 					break;
 				}else if (choice.equals("0")){
 					userWantsToQuit = true;

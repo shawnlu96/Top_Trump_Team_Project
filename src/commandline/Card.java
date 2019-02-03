@@ -12,11 +12,10 @@ public class Card {
 	}
 	
 	public String toString() {
-		String s = String.format("%16s", name);
+		String s = String.format("%13s", name);
 		for(int i=0;i<attributes.length;i++) {
 			s += "\t" + attributes[i];
 		}
-		s += "\t" + playerIndex + "\t" + cardIndex;
 		return s;
 	}
 	

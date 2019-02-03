@@ -71,7 +71,7 @@ public class TTView {
 	
 //
 	public void showFirstCardOfPlayerByIndex(int index) {
-		System.out.print(String.format("%9s:", model.getPlayers().get(index).getPlayerName()));
+		System.out.print(String.format("%-9s:", model.getPlayers().get(index).getPlayerName()));
 		System.out.println(model.getPlayers().get(index).getPlayerCards().get(0).toString());
 	}
 	
@@ -98,6 +98,7 @@ public class TTView {
 	
 	public void showFinalWinner() {
 		System.out.println("Game Over! The Final winner is " + model.getPlayers().get(model.getIndexOfFinalWinner()).getPlayerName() + "!");
+
 	}
 	
 	public void showHumanPlayerCardCount() {
@@ -107,7 +108,7 @@ public class TTView {
 	public void showAllPlayerCardsCount() {
 		System.out.println("Player cards statistics:");
 		for(int i=0;i<model.getPlayers().size();i++) {	//for each player
-			System.out.print(String.format("%9s", model.getPlayers().get(i).getPlayerName()));
+			System.out.print(String.format("%-9s", model.getPlayers().get(i).getPlayerName()));
 			System.out.println(":\t" + model.getPlayers().get(i).getPlayerCards().size());
 		}
 	}

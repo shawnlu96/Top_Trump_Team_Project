@@ -1,0 +1,494 @@
+-----------------deck read from file---------------------
+      Abaddon	6	37	3	9	38
+    Alchemist	6	28	32	12	47
+          Axe	20	16	31	39	30
+  Beastmaster	6	29	27	2	11
+   Brewmaster	37	39	41	12	31
+  Bristleback	16	34	12	43	25
+      Centaur	40	38	31	41	50
+        Chaos	11	25	29	9	13
+    Clockwerk	33	23	21	16	30
+         Doom	42	9	48	7	35
+       Dragon	5	47	16	2	50
+        Earth	3	13	48	20	12
+  Earthshaker	34	17	5	45	48
+        Elder	2	33	41	42	42
+       Huskar	30	14	34	37	28
+           Io	36	30	44	8	37
+       Kunkka	35	3	36	13	44
+       Legion	6	14	45	50	15
+  Lifestealer	36	37	2	23	29
+        Lycan	5	41	48	27	34
+       Magnus	45	28	26	22	32
+        Night	22	6	24	33	14
+   Omniknight	6	21	46	4	29
+      Phoenix	11	43	2	14	16
+        Pudge	13	41	6	19	48
+     Sandking	23	6	46	4	18
+      Slardar	39	27	45	2	16
+Spiritbreaker	34	19	5	38	26
+         Sven	29	11	24	4	4
+   Tidehunter	50	48	37	30	37
+    Timbersaw	32	43	5	14	43
+         Tiny	33	3	43	10	38
+       Treant	31	41	32	19	17
+         Tusk	33	4	9	21	11
+    Underlord	38	10	30	17	7
+      Undying	30	42	33	14	1
+     Vengeful	4	35	34	26	17
+   Venomancer	17	8	46	46	30
+        Viper	26	33	34	8	6
+       Weaver	33	11	9	14	48
+-----------------Shuffled deck---------------------
+       Treant	31	41	32	19	17
+        Earth	3	13	48	20	12
+       Kunkka	35	3	36	13	44
+        Pudge	13	41	6	19	48
+      Centaur	40	38	31	41	50
+    Underlord	38	10	30	17	7
+      Slardar	39	27	45	2	16
+       Weaver	33	11	9	14	48
+         Sven	29	11	24	4	4
+         Doom	42	9	48	7	35
+    Timbersaw	32	43	5	14	43
+  Lifestealer	36	37	2	23	29
+        Night	22	6	24	33	14
+   Venomancer	17	8	46	46	30
+       Legion	6	14	45	50	15
+     Sandking	23	6	46	4	18
+    Clockwerk	33	23	21	16	30
+   Brewmaster	37	39	41	12	31
+   Omniknight	6	21	46	4	29
+     Vengeful	4	35	34	26	17
+         Tiny	33	3	43	10	38
+        Chaos	11	25	29	9	13
+           Io	36	30	44	8	37
+      Undying	30	42	33	14	1
+  Earthshaker	34	17	5	45	48
+          Axe	20	16	31	39	30
+Spiritbreaker	34	19	5	38	26
+        Lycan	5	41	48	27	34
+        Viper	26	33	34	8	6
+       Dragon	5	47	16	2	50
+    Alchemist	6	28	32	12	47
+  Beastmaster	6	29	27	2	11
+       Magnus	45	28	26	22	32
+      Abaddon	6	37	3	9	38
+       Huskar	30	14	34	37	28
+   Tidehunter	50	48	37	30	37
+        Elder	2	33	41	42	42
+      Phoenix	11	43	2	14	16
+  Bristleback	16	34	12	43	25
+         Tusk	33	4	9	21	11
+-----------------Player decks---------------------
+AIPlayer2: 
+       Treant	31	41	32	19	17
+        Earth	3	13	48	20	12
+       Kunkka	35	3	36	13	44
+        Pudge	13	41	6	19	48
+      Centaur	40	38	31	41	50
+    Underlord	38	10	30	17	7
+      Slardar	39	27	45	2	16
+       Weaver	33	11	9	14	48
+AIPlayer4: 
+         Sven	29	11	24	4	4
+         Doom	42	9	48	7	35
+    Timbersaw	32	43	5	14	43
+  Lifestealer	36	37	2	23	29
+        Night	22	6	24	33	14
+   Venomancer	17	8	46	46	30
+       Legion	6	14	45	50	15
+     Sandking	23	6	46	4	18
+AIPlayer3: 
+    Clockwerk	33	23	21	16	30
+   Brewmaster	37	39	41	12	31
+   Omniknight	6	21	46	4	29
+     Vengeful	4	35	34	26	17
+         Tiny	33	3	43	10	38
+        Chaos	11	25	29	9	13
+           Io	36	30	44	8	37
+      Undying	30	42	33	14	1
+AIPlayer1: 
+  Earthshaker	34	17	5	45	48
+          Axe	20	16	31	39	30
+Spiritbreaker	34	19	5	38	26
+        Lycan	5	41	48	27	34
+        Viper	26	33	34	8	6
+       Dragon	5	47	16	2	50
+    Alchemist	6	28	32	12	47
+  Beastmaster	6	29	27	2	11
+You: 
+       Magnus	45	28	26	22	32
+      Abaddon	6	37	3	9	38
+       Huskar	30	14	34	37	28
+   Tidehunter	50	48	37	30	37
+        Elder	2	33	41	42	42
+      Phoenix	11	43	2	14	16
+  Bristleback	16	34	12	43	25
+         Tusk	33	4	9	21	11
+-----------------Attribute selected---------------------
+Attribute 2: Armour
+-----------------Cards in play---------------------
+AIPlayer2:        Treant	31	41	32	19	17
+AIPlayer4:          Sven	29	11	24	4	4
+AIPlayer3:     Clockwerk	33	23	21	16	30
+AIPlayer1:   Earthshaker	34	17	5	45	48
+      You:        Magnus	45	28	26	22	32
+-----------------Player decks---------------------
+AIPlayer2: 
+        Earth	3	13	48	20	12
+       Kunkka	35	3	36	13	44
+        Pudge	13	41	6	19	48
+      Centaur	40	38	31	41	50
+    Underlord	38	10	30	17	7
+      Slardar	39	27	45	2	16
+       Weaver	33	11	9	14	48
+       Treant	31	41	32	19	17
+         Sven	29	11	24	4	4
+    Clockwerk	33	23	21	16	30
+  Earthshaker	34	17	5	45	48
+       Magnus	45	28	26	22	32
+AIPlayer4: 
+         Doom	42	9	48	7	35
+    Timbersaw	32	43	5	14	43
+  Lifestealer	36	37	2	23	29
+        Night	22	6	24	33	14
+   Venomancer	17	8	46	46	30
+       Legion	6	14	45	50	15
+     Sandking	23	6	46	4	18
+AIPlayer3: 
+   Brewmaster	37	39	41	12	31
+   Omniknight	6	21	46	4	29
+     Vengeful	4	35	34	26	17
+         Tiny	33	3	43	10	38
+        Chaos	11	25	29	9	13
+           Io	36	30	44	8	37
+      Undying	30	42	33	14	1
+AIPlayer1: 
+          Axe	20	16	31	39	30
+Spiritbreaker	34	19	5	38	26
+        Lycan	5	41	48	27	34
+        Viper	26	33	34	8	6
+       Dragon	5	47	16	2	50
+    Alchemist	6	28	32	12	47
+  Beastmaster	6	29	27	2	11
+You: 
+      Abaddon	6	37	3	9	38
+       Huskar	30	14	34	37	28
+   Tidehunter	50	48	37	30	37
+        Elder	2	33	41	42	42
+      Phoenix	11	43	2	14	16
+  Bristleback	16	34	12	43	25
+         Tusk	33	4	9	21	11
+-----------------Attribute selected---------------------
+Attribute 3: Strength
+-----------------Cards in play---------------------
+AIPlayer2:         Earth	3	13	48	20	12
+AIPlayer4:          Doom	42	9	48	7	35
+AIPlayer3:    Brewmaster	37	39	41	12	31
+AIPlayer1:           Axe	20	16	31	39	30
+      You:       Abaddon	6	37	3	9	38
+-----------------Communal Pile---------------------
+        Earth	3	13	48	20	12
+         Doom	42	9	48	7	35
+   Brewmaster	37	39	41	12	31
+          Axe	20	16	31	39	30
+      Abaddon	6	37	3	9	38
+-----------------Attribute selected---------------------
+Attribute 5: Intelligence
+-----------------Cards in play---------------------
+AIPlayer2:        Kunkka	35	3	36	13	44
+AIPlayer4:     Timbersaw	32	43	5	14	43
+AIPlayer3:    Omniknight	6	21	46	4	29
+AIPlayer1: Spiritbreaker	34	19	5	38	26
+      You:        Huskar	30	14	34	37	28
+-----------------Communal Pile---------------------
+        Earth	3	13	48	20	12
+         Doom	42	9	48	7	35
+   Brewmaster	37	39	41	12	31
+          Axe	20	16	31	39	30
+      Abaddon	6	37	3	9	38
+-----------------Player decks---------------------
+AIPlayer2: 
+        Pudge	13	41	6	19	48
+      Centaur	40	38	31	41	50
+    Underlord	38	10	30	17	7
+      Slardar	39	27	45	2	16
+       Weaver	33	11	9	14	48
+       Treant	31	41	32	19	17
+         Sven	29	11	24	4	4
+    Clockwerk	33	23	21	16	30
+  Earthshaker	34	17	5	45	48
+       Magnus	45	28	26	22	32
+       Kunkka	35	3	36	13	44
+        Earth	3	13	48	20	12
+         Doom	42	9	48	7	35
+   Brewmaster	37	39	41	12	31
+          Axe	20	16	31	39	30
+      Abaddon	6	37	3	9	38
+    Timbersaw	32	43	5	14	43
+   Omniknight	6	21	46	4	29
+Spiritbreaker	34	19	5	38	26
+       Huskar	30	14	34	37	28
+AIPlayer4: 
+  Lifestealer	36	37	2	23	29
+        Night	22	6	24	33	14
+   Venomancer	17	8	46	46	30
+       Legion	6	14	45	50	15
+     Sandking	23	6	46	4	18
+AIPlayer3: 
+     Vengeful	4	35	34	26	17
+         Tiny	33	3	43	10	38
+        Chaos	11	25	29	9	13
+           Io	36	30	44	8	37
+      Undying	30	42	33	14	1
+AIPlayer1: 
+        Lycan	5	41	48	27	34
+        Viper	26	33	34	8	6
+       Dragon	5	47	16	2	50
+    Alchemist	6	28	32	12	47
+  Beastmaster	6	29	27	2	11
+You: 
+   Tidehunter	50	48	37	30	37
+        Elder	2	33	41	42	42
+      Phoenix	11	43	2	14	16
+  Bristleback	16	34	12	43	25
+         Tusk	33	4	9	21	11
+-----------------Attribute selected---------------------
+Attribute 5: Intelligence
+-----------------Cards in play---------------------
+AIPlayer2:         Pudge	13	41	6	19	48
+AIPlayer4:   Lifestealer	36	37	2	23	29
+AIPlayer3:      Vengeful	4	35	34	26	17
+AIPlayer1:         Lycan	5	41	48	27	34
+      You:    Tidehunter	50	48	37	30	37
+-----------------Player decks---------------------
+AIPlayer2: 
+      Centaur	40	38	31	41	50
+    Underlord	38	10	30	17	7
+      Slardar	39	27	45	2	16
+       Weaver	33	11	9	14	48
+       Treant	31	41	32	19	17
+         Sven	29	11	24	4	4
+    Clockwerk	33	23	21	16	30
+  Earthshaker	34	17	5	45	48
+       Magnus	45	28	26	22	32
+       Kunkka	35	3	36	13	44
+        Earth	3	13	48	20	12
+         Doom	42	9	48	7	35
+   Brewmaster	37	39	41	12	31
+          Axe	20	16	31	39	30
+      Abaddon	6	37	3	9	38
+    Timbersaw	32	43	5	14	43
+   Omniknight	6	21	46	4	29
+Spiritbreaker	34	19	5	38	26
+       Huskar	30	14	34	37	28
+        Pudge	13	41	6	19	48
+  Lifestealer	36	37	2	23	29
+     Vengeful	4	35	34	26	17
+        Lycan	5	41	48	27	34
+   Tidehunter	50	48	37	30	37
+AIPlayer4: 
+        Night	22	6	24	33	14
+   Venomancer	17	8	46	46	30
+       Legion	6	14	45	50	15
+     Sandking	23	6	46	4	18
+AIPlayer3: 
+         Tiny	33	3	43	10	38
+        Chaos	11	25	29	9	13
+           Io	36	30	44	8	37
+      Undying	30	42	33	14	1
+AIPlayer1: 
+        Viper	26	33	34	8	6
+       Dragon	5	47	16	2	50
+    Alchemist	6	28	32	12	47
+  Beastmaster	6	29	27	2	11
+You: 
+        Elder	2	33	41	42	42
+      Phoenix	11	43	2	14	16
+  Bristleback	16	34	12	43	25
+         Tusk	33	4	9	21	11
+-----------------Attribute selected---------------------
+Attribute 5: Intelligence
+-----------------Cards in play---------------------
+AIPlayer2:       Centaur	40	38	31	41	50
+AIPlayer4:         Night	22	6	24	33	14
+AIPlayer3:          Tiny	33	3	43	10	38
+AIPlayer1:         Viper	26	33	34	8	6
+      You:         Elder	2	33	41	42	42
+-----------------Player decks---------------------
+AIPlayer2: 
+    Underlord	38	10	30	17	7
+      Slardar	39	27	45	2	16
+       Weaver	33	11	9	14	48
+       Treant	31	41	32	19	17
+         Sven	29	11	24	4	4
+    Clockwerk	33	23	21	16	30
+  Earthshaker	34	17	5	45	48
+       Magnus	45	28	26	22	32
+       Kunkka	35	3	36	13	44
+        Earth	3	13	48	20	12
+         Doom	42	9	48	7	35
+   Brewmaster	37	39	41	12	31
+          Axe	20	16	31	39	30
+      Abaddon	6	37	3	9	38
+    Timbersaw	32	43	5	14	43
+   Omniknight	6	21	46	4	29
+Spiritbreaker	34	19	5	38	26
+       Huskar	30	14	34	37	28
+        Pudge	13	41	6	19	48
+  Lifestealer	36	37	2	23	29
+     Vengeful	4	35	34	26	17
+        Lycan	5	41	48	27	34
+   Tidehunter	50	48	37	30	37
+      Centaur	40	38	31	41	50
+        Night	22	6	24	33	14
+         Tiny	33	3	43	10	38
+        Viper	26	33	34	8	6
+        Elder	2	33	41	42	42
+AIPlayer4: 
+   Venomancer	17	8	46	46	30
+       Legion	6	14	45	50	15
+     Sandking	23	6	46	4	18
+AIPlayer3: 
+        Chaos	11	25	29	9	13
+           Io	36	30	44	8	37
+      Undying	30	42	33	14	1
+AIPlayer1: 
+       Dragon	5	47	16	2	50
+    Alchemist	6	28	32	12	47
+  Beastmaster	6	29	27	2	11
+You: 
+      Phoenix	11	43	2	14	16
+  Bristleback	16	34	12	43	25
+         Tusk	33	4	9	21	11
+-----------------Attribute selected---------------------
+Attribute 1: Attack
+-----------------Cards in play---------------------
+AIPlayer2:     Underlord	38	10	30	17	7
+AIPlayer4:    Venomancer	17	8	46	46	30
+AIPlayer3:         Chaos	11	25	29	9	13
+AIPlayer1:        Dragon	5	47	16	2	50
+      You:       Phoenix	11	43	2	14	16
+-----------------Player decks---------------------
+AIPlayer2: 
+      Slardar	39	27	45	2	16
+       Weaver	33	11	9	14	48
+       Treant	31	41	32	19	17
+         Sven	29	11	24	4	4
+    Clockwerk	33	23	21	16	30
+  Earthshaker	34	17	5	45	48
+       Magnus	45	28	26	22	32
+       Kunkka	35	3	36	13	44
+        Earth	3	13	48	20	12
+         Doom	42	9	48	7	35
+   Brewmaster	37	39	41	12	31
+          Axe	20	16	31	39	30
+      Abaddon	6	37	3	9	38
+    Timbersaw	32	43	5	14	43
+   Omniknight	6	21	46	4	29
+Spiritbreaker	34	19	5	38	26
+       Huskar	30	14	34	37	28
+        Pudge	13	41	6	19	48
+  Lifestealer	36	37	2	23	29
+     Vengeful	4	35	34	26	17
+        Lycan	5	41	48	27	34
+   Tidehunter	50	48	37	30	37
+      Centaur	40	38	31	41	50
+        Night	22	6	24	33	14
+         Tiny	33	3	43	10	38
+        Viper	26	33	34	8	6
+        Elder	2	33	41	42	42
+    Underlord	38	10	30	17	7
+   Venomancer	17	8	46	46	30
+        Chaos	11	25	29	9	13
+       Dragon	5	47	16	2	50
+      Phoenix	11	43	2	14	16
+AIPlayer4: 
+       Legion	6	14	45	50	15
+     Sandking	23	6	46	4	18
+AIPlayer3: 
+           Io	36	30	44	8	37
+      Undying	30	42	33	14	1
+AIPlayer1: 
+    Alchemist	6	28	32	12	47
+  Beastmaster	6	29	27	2	11
+You: 
+  Bristleback	16	34	12	43	25
+         Tusk	33	4	9	21	11
+-----------------Attribute selected---------------------
+Attribute 3: Strength
+-----------------Cards in play---------------------
+AIPlayer2:       Slardar	39	27	45	2	16
+AIPlayer4:        Legion	6	14	45	50	15
+AIPlayer3:            Io	36	30	44	8	37
+AIPlayer1:     Alchemist	6	28	32	12	47
+      You:   Bristleback	16	34	12	43	25
+-----------------Communal Pile---------------------
+      Slardar	39	27	45	2	16
+       Legion	6	14	45	50	15
+           Io	36	30	44	8	37
+    Alchemist	6	28	32	12	47
+  Bristleback	16	34	12	43	25
+-----------------Attribute selected---------------------
+Attribute 5: Intelligence
+-----------------Cards in play---------------------
+AIPlayer2:        Weaver	33	11	9	14	48
+AIPlayer4:      Sandking	23	6	46	4	18
+AIPlayer3:       Undying	30	42	33	14	1
+AIPlayer1:   Beastmaster	6	29	27	2	11
+      You:          Tusk	33	4	9	21	11
+-----------------Communal Pile---------------------
+      Slardar	39	27	45	2	16
+       Legion	6	14	45	50	15
+           Io	36	30	44	8	37
+    Alchemist	6	28	32	12	47
+  Bristleback	16	34	12	43	25
+-----------------Player decks---------------------
+AIPlayer2: 
+       Treant	31	41	32	19	17
+         Sven	29	11	24	4	4
+    Clockwerk	33	23	21	16	30
+  Earthshaker	34	17	5	45	48
+       Magnus	45	28	26	22	32
+       Kunkka	35	3	36	13	44
+        Earth	3	13	48	20	12
+         Doom	42	9	48	7	35
+   Brewmaster	37	39	41	12	31
+          Axe	20	16	31	39	30
+      Abaddon	6	37	3	9	38
+    Timbersaw	32	43	5	14	43
+   Omniknight	6	21	46	4	29
+Spiritbreaker	34	19	5	38	26
+       Huskar	30	14	34	37	28
+        Pudge	13	41	6	19	48
+  Lifestealer	36	37	2	23	29
+     Vengeful	4	35	34	26	17
+        Lycan	5	41	48	27	34
+   Tidehunter	50	48	37	30	37
+      Centaur	40	38	31	41	50
+        Night	22	6	24	33	14
+         Tiny	33	3	43	10	38
+        Viper	26	33	34	8	6
+        Elder	2	33	41	42	42
+    Underlord	38	10	30	17	7
+   Venomancer	17	8	46	46	30
+        Chaos	11	25	29	9	13
+       Dragon	5	47	16	2	50
+      Phoenix	11	43	2	14	16
+       Weaver	33	11	9	14	48
+      Slardar	39	27	45	2	16
+       Legion	6	14	45	50	15
+           Io	36	30	44	8	37
+    Alchemist	6	28	32	12	47
+  Bristleback	16	34	12	43	25
+     Sandking	23	6	46	4	18
+      Undying	30	42	33	14	1
+  Beastmaster	6	29	27	2	11
+         Tusk	33	4	9	21	11
+AIPlayer4: 
+AIPlayer3: 
+AIPlayer1: 
+You: 
+-----------------Final Winner---------------------
+AIPlayer2

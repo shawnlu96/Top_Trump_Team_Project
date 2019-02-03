@@ -8,11 +8,12 @@ public class TTController {
 	private TTModel model;
 	private TTView view;
 
-	private String testLog = "";
+
 	private Scanner s = new Scanner(System.in);
 	public TTController(TTModel model, TTView view){
 		this.model = model;
 		this.view = view;
+
 		startGame();
 	}
 	
@@ -35,11 +36,14 @@ public class TTController {
 						int playerIndex = getAttributeIndex();
 						model.setIndexOfCurrentAttribute(playerIndex);	//let user input the index of characteristic chosen
 						view.showPickingMessage(playerIndex);
+						model.testLog.addAttributeSelected();
+
 					}else {							//if the winner is an AI player
 //						view.showFirstCardOfPlayerByIndex(i);							//show first card
 						int AIIndex = getHighestAttributeIndex(i);
 						model.setIndexOfCurrentAttribute(AIIndex);	//let the AI choose the characteristic
 						view.showPickingMessage(AIIndex);
+						model.testLog.addAttributeSelected();
 //						model.setIndexOfCurrentCharacteristic(getAttributeIndex());	//let user input the index of characteristic chosen
 
 					}
@@ -66,9 +70,13 @@ public class TTController {
 			}
 		}
 		view.showFinalWinner();
+		model.testLog.addFinalWinner();
 		view.showScores();
 		setStatistics();
-		DbStatic.showStatistics();						//only test it with database
+		DbConnection d = new DbConnection();
+		System.out.println(d.statisticsToString());
+		d.closeConnection(d);
+		System.out.println();
 	}
 	
 	//method to play an entire round of this game
@@ -85,6 +93,7 @@ public class TTController {
 				cardsThisRound.add(model.getPlayers().get(i).getPlayerCards().get(0));	//add current card to the array list fot this round
 			}
 		}
+		model.testLog.addCardsThisRound();
 		//................testing.............
 		//show all the cards info in this round
 //		for(int i=0;i<cardsThisRound.size();i++) {
@@ -114,6 +123,7 @@ public class TTController {
 				model.getPlayers().get(cardsThisRound.get(i).getPlayerIndex()).getPlayerCards().remove(0);	//remove everyone's first card
 				cardsThisRound.get(i).setPlayerIndex(winnerIndex);						//set all cards' winner index
 				if(!model.getCommunalPile().isEmpty()) {				//if there is any cards in the communal pile
+					model.testLog.addCommunalPile();
 					for(int j=0;j<model.getCommunalPile().size();j++) {	//for each card in the communal pile
 						model.getPlayers().get(winnerIndex).getPlayerCards().add(model.getCommunalPile().get(j));	//add it to winner's cards
 						model.getCommunalPile().get(j).setPlayerIndex(winnerIndex);						//set card's player index to the winner's
@@ -123,6 +133,7 @@ public class TTController {
 			}
 			view.showRoundWinner();
 			view.showWinningCard();
+			model.testLog.addPlayerCardsInfo();
 			if(!model.isHumanPlayerEliminated()) {
 				s.nextLine();						//make the program stop
 			}
@@ -134,6 +145,7 @@ public class TTController {
 				model.getPlayers().get(cardsThisRound.get(i).getPlayerIndex()).getPlayerCards().remove(0);					//remove everyone's first card
 				cardsThisRound.get(i).setPlayerIndex(-1);	//set player index to -1
 			}
+			model.testLog.addCommunalPile();
 			model.addDrawNumbers();
 			view.showDrawMessage();
 //			view.showAllPlayerCardsCount();			//for testing
