@@ -8,13 +8,20 @@ public class TTController {
 	private TTModel model;
 	private TTView view;
 
-
+	//the proper constructor 
 	private Scanner s = new Scanner(System.in);
 	public TTController(TTModel model, TTView view){
 		this.model = model;
 		this.view = view;
 
 		startGame();
+	}
+	
+	//second constructor, for JUnit testing-only
+	public TTController(TTModel model, TTView view, String test){
+		this.model = model;
+		this.view = view;
+		//does not stat the game
 	}
 	
 	public void startGame() {
@@ -227,6 +234,9 @@ public class TTController {
 		
 		d.closeConnection(d);
 
+	}
+	public TTModel getModel() {
+		return model;
 	}
 	
 }

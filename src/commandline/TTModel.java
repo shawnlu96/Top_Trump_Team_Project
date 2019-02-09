@@ -29,7 +29,7 @@ public class TTModel {
 	private int drawNumbers = 0;
 	public static TestLog testLog;
 	
-	//...Constructor
+	//...constructor
 	public TTModel() {
 		testLog = new TestLog(this);
 		readCards(new File(DECK_PATH));
@@ -43,6 +43,23 @@ public class TTModel {
 		distributePlayerCards();			//initialise cards for each player
 		setIndexOfHumanPlayer();
 	}
+	
+	//second constructor, for testing purposes only
+	
+	public TTModel (String test) {
+		testLog = new TestLog(this);
+		readCards(new File(DECK_PATH));
+		AIPlayerNumber =  2;
+		testLog.addLine("Shuffled deck");
+		Collections.shuffle(cards);			//cards randomly shuffled
+		for(Card c:cards){					//add shuffled deck to testLog
+			testLog.addLog(c.toString());
+		}
+		initialisePlayers();				//initialise the player objects
+		distributePlayerCards();			//initialise cards for each player
+		setIndexOfHumanPlayer();
+	}
+	
 	
 	public void setNumbersOfAIPlayers() {
 		int number = 0;
@@ -229,5 +246,12 @@ public class TTModel {
 	public void addDrawNumbers() {
 		drawNumbers++;
 	}
-	
+	public int getAIPlayerNumber() {
+		return AIPlayerNumber;
+	}
+
+	public void setPlayers(ArrayList<Player> testPlayerList) {
+		this.players = testPlayerList;
+		
+	}
 }

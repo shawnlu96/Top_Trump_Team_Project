@@ -1,1 +1,0 @@
-java -jar MScIT2019Project-1.0.jar -c -t
