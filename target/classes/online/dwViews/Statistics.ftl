@@ -21,8 +21,8 @@
 	</head>
 
     <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
-    	
-    	<div class="container">
+
+    	<div class="container-fluid">
 			<p></p>
 			<h1> Game Statistics </h1>
 			<p></p>
