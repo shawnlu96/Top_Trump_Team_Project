@@ -21,11 +21,32 @@
 	</head>
 
     <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
-    	
-    	<div class="container">
+    	<style type="text/css">
+			.column
+			{
+				width: 33.33%;
+			}
+			.row
+			{
+				height: 33.33%;
+			}
+			div {
+				outline: 1px solid black;
+			}
+		</style>
 
-			<!-- Add your HTML Here -->
-		
+		<div class="container">
+			<p></p>
+			<div class = "row">
+				<div class = "column">INSERT GAME LOGIC HERE</div>
+				<div class = "column"><img src="/assets/1.png"/></div>
+				<div class = "column"><img src="/assets/2.png"/></div>
+			</div>
+			<div class = "row">
+				<div class = "column"><img src="/assets/3.png"/></div>
+				<div class = "column"><img src="/assets/4.png"/></div>
+				<div class = "column"><img src="/assets/5.png"/></div>
+			</div>
 		</div>
 		
 		<script type="text/javascript">

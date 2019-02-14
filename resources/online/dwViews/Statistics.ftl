@@ -23,9 +23,11 @@
     <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
     	
     	<div class="container">
+			<p></p>
+			<h1> Game Statistics </h1>
+			<p></p>
+			<p id="content"></p>
 
-			<!-- Add your HTML Here -->
-		
 		</div>
 		
 		<script type="text/javascript">
@@ -38,9 +40,8 @@
 				// --------------------------------------------------------------------------
 				
 				// For example, lets call our sample methods
-				helloJSONList();
-				helloWord("Student");
-				
+				getStatistics();
+
 			}
 			
 			// -----------------------------------------
@@ -119,6 +120,29 @@
 				
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();		
+			}
+
+			// This calls the getStatistics() REST method from TopTrumpsRESTAPI
+			function getStatistics() {
+
+				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/getStatistics"); // Request type and URL+parameters
+
+				// Message is not sent yet, but we can check that the browser supports CORS
+				if (!xhr) {
+					alert("CORS not supported");
+				}
+
+				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+				// to do when the response arrives
+				xhr.onload = function(e) {
+					// var responseText = xhr.response; // the text of the response
+					var p = document.getElementById("content");
+					p.innerHTML = xhr.responseText;
+				};
+
+				// We have done everything we need to prepare the CORS request, so send it
+				xhr.send();
 			}
 
 		</script>

@@ -6,6 +6,7 @@ import java.util.EnumSet;
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 
+import io.dropwizard.assets.AssetsBundle;
 import online.configuration.TopTrumpsJSONConfiguration;
 import online.dwResources.GameWebPagesResource;
 import online.dwResources.TopTrumpsRESTAPI;
@@ -83,5 +84,6 @@ public class TopTrumpsOnlineApplication extends Application<TopTrumpsJSONConfigu
 	@Override
     public void initialize(Bootstrap<TopTrumpsJSONConfiguration> bootstrap) {
     	bootstrap.addBundle(new ViewBundle<TopTrumpsJSONConfiguration>());
+    	bootstrap.addBundle(new AssetsBundle("/assets/", "/assets", null, "myassets"));
     }
 }

@@ -23,8 +23,9 @@
     <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
     	
     	<div class="container">
-
-			<!-- Add your HTML Here -->
+			<p></p>
+			<button onclick="window.location.href = 'http://localhost:7777/toptrumps/game';">Play Game</button>
+			<button onclick="window.location.href = 'http://localhost:7777/toptrumps/stats';">Statistics</button>
 		
 		</div>
 		
@@ -38,8 +39,7 @@
 				// --------------------------------------------------------------------------
 				
 				// For example, lets call our sample methods
-				helloJSONList();
-				helloWord("Student");
+
 				
 			}
 			

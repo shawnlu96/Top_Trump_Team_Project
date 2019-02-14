@@ -15,6 +15,7 @@ import online.configuration.TopTrumpsJSONConfiguration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import commandline.*;
 
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
 @Produces(MediaType.APPLICATION_JSON) // This resource returns JSON content
@@ -34,7 +35,10 @@ public class TopTrumpsRESTAPI {
 	/** A Jackson Object writer. It allows us to turn Java objects
 	 * into JSON strings easily. */
 	ObjectWriter oWriter = new ObjectMapper().writerWithDefaultPrettyPrinter();
-	
+//	TTModel model;
+//	TTView view ;
+//	TTController controller;
+	DbConnection d;
 	/**
 	 * Contructor method for the REST API. This is called first. It provides
 	 * a TopTrumpsJSONConfiguration from which you can get the location of
@@ -43,9 +47,9 @@ public class TopTrumpsRESTAPI {
 	 */
 	public TopTrumpsRESTAPI(TopTrumpsJSONConfiguration conf) {
 		// ----------------------------------------------------
-		// Add relevant initalization here
+		// Add relevant initalization here - this involves the model, view, controller.
 		// ----------------------------------------------------
-
+		d = new DbConnection();
 	}
 	
 	// ----------------------------------------------------
@@ -53,7 +57,7 @@ public class TopTrumpsRESTAPI {
 	// ----------------------------------------------------
 	
 	@GET
-	@Path("/helloJSONList")
+	@Path("/stats")
 	/**
 	 * Here is an example of a simple REST get request that returns a String.
 	 * We also illustrate here how we can convert Java objects to JSON strings.
@@ -61,16 +65,12 @@ public class TopTrumpsRESTAPI {
 	 * @throws IOException
 	 */
 	public String helloJSONList() throws IOException {
-		
-		List<String> listOfWords = new ArrayList<String>();
-		listOfWords.add("Hello");
-		listOfWords.add("World!");
+
+
 		
 		// We can turn arbatory Java objects directly into JSON strings using
 		// Jackson seralization, assuming that the Java objects are not too complex.
-		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
-		
-		return listAsJSONString;
+		return null;
 	}
 	
 	@GET
@@ -84,5 +84,24 @@ public class TopTrumpsRESTAPI {
 	public String helloWord(@QueryParam("Word") String Word) throws IOException {
 		return "Hello "+Word;
 	}
-	
+
+	// ----------------------------------------------------
+	// Radu's Statistics method - feel free to delete
+	// ----------------------------------------------------
+
+	@GET
+	@Path("/getStatistics")
+	public String getStatistics() throws IOException {
+
+		String s = "Total games:   " + d.getgameNumber() + "\r\n"
+				+ "<p></p>"
+				+ "Computer wins: " + d.getAIwinningNumber() + "\r\n"
+				+ "<p></p>"
+				+ "Human wins:    " + d.getHumanwinningNumber() + "\r\n"
+				+ "<p></p>"
+				+ "Average draws: " + d.getAverageDrawNumber() + "\r\n"
+				+ "<p></p>"
+				+ "Max rounds:    " + d.getMaxRounds() + "\r\n";
+		return s;
+	}
 }
