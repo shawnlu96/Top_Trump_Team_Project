@@ -1,9 +1,6 @@
-package commandline;
-
 import static org.junit.jupiter.api.Assertions.*;
-
-
 import java.util.ArrayList;
+import commandline.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -123,7 +120,7 @@ class TTControllerTest {
 		Player testPlayer = new Player("testPlayer");
 
 		int[] testAttributes = { 4, 5, 10, 7, 2 };
-		Card testCard = new Card("testCard", testAttributes);
+		Card testCard = new Card("testCard", testAttributes,1);
 		ArrayList<Card> testCardList = new ArrayList<Card>();
 		testCardList.add(testCard);
 
@@ -147,7 +144,7 @@ class TTControllerTest {
 
 		// initiate a card and add it to the human player's hand
 		int[] testAttributes = { 4, 5, 10, 7, 2 };
-		Card testCard = new Card("testCard", testAttributes);
+		Card testCard = new Card("testCard", testAttributes, 1);
 		ArrayList<Card> testCardList = new ArrayList<Card>();
 		testCardList.add(testCard);
 		testPlayer.setPlayerCards(testCardList);

@@ -8,21 +8,23 @@ public class TTController {
 	private TTModel model;
 	private TTView view;
 
-	//the proper constructor 
-	private Scanner s = new Scanner(System.in);
-	public TTController(TTModel model, TTView view){
-		this.model = model;
-		this.view = view;
+	private boolean isOnline;
+	private boolean isPaused;
 
-		startGame();
-	}
-	
-	//second constructor, for JUnit testing-only
-	public TTController(TTModel model, TTView view, String test){
+	private Scanner s = new Scanner(System.in);
+	public TTController(TTModel model, TTView view) {
 		this.model = model;
 		this.view = view;
-		//does not stat the game
 	}
+
+//second constructor, for JUnit testing-only
+	public TTController(TTModel model, TTView view, String test){
+			this.model = model;
+			this.view = view;
+			//does not stat the game
+		}
+
+//		startGame();
 	
 	public void startGame() {
 		while(!model.isEnd()) {
@@ -36,11 +38,9 @@ public class TTController {
 			//...procedure of confirming current attribute in this round
 			for(int i=0;i<model.getPlayers().size();i++) {	//for each player in a round
 				if(model.getIndexOfRoundWinner()==i) {								//if current player is the round winner
-					if(model.getPlayers().get(i).getPlayerName().equals("You")) {			//if the winner is the user
-//						System.out.print("Your card on top:");
-//						view.showFirstCardOfPlayerByIndex(i);							//show first card
-						view.showCateGories();
-						int playerIndex = getAttributeIndex();
+					if(model.getPlayers().get(i).getPlayerName().equals("You")) {	//if the winner is the user
+						view.showCategories();										//show the categories text
+						int playerIndex = getAttributeIndex();						//get attribute user chooses from system input
 						model.setIndexOfCurrentAttribute(playerIndex);	//let user input the index of characteristic chosen
 						view.showPickingMessage(playerIndex);
 						model.testLog.addAttributeSelected();
@@ -56,13 +56,13 @@ public class TTController {
 					}
 				}	//characteristic chosen by now...
 			}
-			
+			view.showCardsThisRound();
 			this.playRound(model.getIndexOfCurrentAttribute());
 			for(int i=0;i<model.getPlayers().size();i++) {							//for each player
 				if(model.getPlayers().get(i).getPlayerCards().size()==40) {		//if anyone have 40 cards
 					model.setEnd(true);						//set game end
 					model.setIndexOfFinalWinner(i);
-					
+
 					break;
 				}
 			}
@@ -88,44 +88,40 @@ public class TTController {
 	
 	//method to play an entire round of this game
 	public void playRound(int indexOfCharacteristic) {
-		
+		model.initCardsThisRound();
 		int max = 0;
 		ArrayList<Card> cardsThisRound = new ArrayList<Card>();
  		int temp;		//current card's temp characteristic
-		boolean isDraw = false;
+		model.setDraw(true);
 		int winnerIndex = model.getIndexOfRoundWinner();	//initialise the index of the round winner
-//		System.out.println("This round goes with characteristic " + (indexOfCharacteristic+1));
 		for(int i=0;i<model.getPlayers().size();i++) {		//for each player
-			if(!model.getPlayers().get(i).getPlayerCards().isEmpty()) {					//if the player isn't eliminated
+			if(model.getPlayers().get(i).getPlayerCards().size()!=0) {					//if the player isn't eliminated
 				cardsThisRound.add(model.getPlayers().get(i).getPlayerCards().get(0));	//add current card to the array list fot this round
+			}else {
+				model.getPlayers().get(i).setEliminated(true);
 			}
 		}
+		for(Card c:cardsThisRound){
+			model.getCardsThisRound().add(c);
+		}
 		model.testLog.addCardsThisRound();
-		//................testing.............
-		//show all the cards info in this round
-//		for(int i=0;i<cardsThisRound.size();i++) {
-//			System.out.print(String.format("%9s:", model.getPlayers().get(cardsThisRound.get(i).getPlayerIndex()).getPlayerName()));
-//			System.out.println(cardsThisRound.get(i).toString());
-//		}
-//		s.nextLine();
-		//decide if it is draw or not. if not, which one is the winner
 		for(int i=0;i<cardsThisRound.size();i++) {
 			temp = cardsThisRound.get(i).getAttributes()[indexOfCharacteristic];	//get current characteristic
 			if(temp>=max) {				
 				if(temp==max) {		
-					isDraw = true;
+					model.setDraw(true);
 					continue;
 				}
 				max = temp;
 				winnerIndex = cardsThisRound.get(i).getPlayerIndex();	//set the winner index
-				isDraw = false;
+				model.setDraw(false);
 			}
 		}
-		if(!isDraw) {		//if it is not a draw
+		if(!model.isDraw()) {		//if it is not a draw
 			model.setIndexOfRoundWinner(winnerIndex);	//first update the index of round winner in the model
 			model.getPlayers().get(winnerIndex).addGameWon();		//add gameWon
 			model.setIndexOfWinningCard((model.getPlayers().get(winnerIndex).getPlayerCards().get(0).getCardIndex()));
-			for(int i=0;i<cardsThisRound.size();i++) {	//for each cards in this round 
+			for(int i=0;i<cardsThisRound.size();i++) {	//for each cards in this round
 				model.getPlayers().get(winnerIndex).getPlayerCards().add(cardsThisRound.get(i));	//add all cards to the winner's cards
 				model.getPlayers().get(cardsThisRound.get(i).getPlayerIndex()).getPlayerCards().remove(0);	//remove everyone's first card
 				cardsThisRound.get(i).setPlayerIndex(winnerIndex);						//set all cards' winner index
@@ -142,8 +138,11 @@ public class TTController {
 			view.showWinningCard();
 			model.testLog.addPlayerCardsInfo();
 			if(!model.isHumanPlayerEliminated()) {
-				s.nextLine();						//make the program stop
+				if(!isOnline) {					//if it's not online mode
+					s.nextLine();               //make the program stop
+				}
 			}
+
 //			view.showAllPlayerCardsCount();			//for testing
 //			s.nextLine();
 		}else {				//if it is a draw
@@ -156,8 +155,10 @@ public class TTController {
 			model.addDrawNumbers();
 			view.showDrawMessage();
 //			view.showAllPlayerCardsCount();			//for testing
-			if(!model.isHumanPlayerEliminated()) {	
-				s.nextLine();						//make the program stop 
+			if(!model.isHumanPlayerEliminated()) {
+				if(!isOnline) {					//if it's not online mode
+					s.nextLine();               //make the program stop
+				}
 			}
 			
 		}
@@ -169,11 +170,13 @@ public class TTController {
 			if(model.getPlayers().get(model.getIndexOfHumanPlayer()).getPlayerCards().size()==0) {
 				model.setHumanPlayerEliminated(true);
 				System.out.println("You lose!");
-				s.nextLine();		//pause the game
+				if(!isOnline) {					//if it's not online mode
+					s.nextLine();               //make the program stop
+				}
 			}
 		}
 	}
-	
+
 	//method identical for the one used when playing the game, except it doesn't pause the game in order to be suitable JUNit testing
 	public void checkHumanPlayerEliminated(String test) {
 		if(!model.isHumanPlayerEliminated()) {				//if human player hasn't been marked as eliminated
@@ -217,12 +220,7 @@ public class TTController {
 		for(int i=0;i<characteristics.length;i++) {	//for each attribute
 			if(characteristics[i]>max) {
 				max = characteristics[i];
-			}
-		}
-		for(int i=0;i<characteristics.length;i++) {
-			if(characteristics[i]==max) {
 				index = i;
-				break;
 			}
 		}
 		return index;
@@ -245,8 +243,27 @@ public class TTController {
 		d.closeConnection(d);
 
 	}
-	public TTModel getModel() {
-		return model;
+
+	//getters and setters
+	public boolean isOnline() {
+		return isOnline;
 	}
-	
+
+	public void setOnline(boolean online) {
+		isOnline = online;
+	}
+
+	public boolean isPaused() {
+		return isPaused;
+	}
+
+	public void setPaused(boolean paused) {
+		isPaused = paused;
+	}
+
+	public TTModel getModel() {
+		return model;}
+
+
+
 }

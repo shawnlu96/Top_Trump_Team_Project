@@ -27,23 +27,33 @@ public class TTView {
 			System.out.println("   " + model.getPlayers().get(i).getPlayerName() + ": " + model.getPlayers().get(i).getGameWon());
 		}
 	}
-
-	//only for testing
+//
+//	//only for testing
 //	public void showCardsOfEachPlayer() {
 //		for(int i=0;i<model.getPlayers().size();i++) {
 //			System.out.println(model.getPlayers().get(i).getPlayerName() + ":");
 //			showCardOfPlayerByIndex(i);
 //		}
 //	}
-//	
+//
 //	public void showCardOfPlayerByIndex(int index) {
 //		for(int i=0;i<model.getPlayers().get(index).getPlayerCards().size();i++) {
 //			System.out.println(model.getPlayers().get(index).getPlayerCards().get(i).toString());
 //		}
 //	}
-//	
+
+	public void showCardsThisRound(){
+		for(Player p:model.getPlayers()){
+			if(p.getPlayerCards().size()!=0) {
+				System.out.print(p.getPlayerName() + "\t");
+				System.out.println(p.getPlayerCards().get(0).toString());
+			}
+		}
+	}
+
+
 	public void showPlayerCardOnTop() {
-		Card playerCard = null;
+		Card playerCard;
 		playerCard = model.getPlayers().get(model.getIndexOfHumanPlayer()).getPlayerCards().get(0);
 		System.out.println("You Drew '" + playerCard.getName() + "'");
 		for(int i=0;i<playerCard.getAttributes().length;i++) {
@@ -58,7 +68,7 @@ public class TTView {
 	
 	public void showWinningCard() {
 		String s;
-		Card winningCard = model.getCards().get(model.getIndexOfWinningCard());
+		Card winningCard = model.getCardByCardIndex(model.getIndexOfWinningCard());
 		System.out.println("The winning card was '" + winningCard.getName() + "':");
 		for(int i=1;i<model.getAttributeNames().length;i++) {
 			s = "   > " + model.getAttributeNames()[i] + ": " + winningCard.getAttributes()[i-1];
@@ -85,7 +95,7 @@ public class TTView {
 				" Picked characteristic " + (indexOfCharacteristic+1) + ": " + model.getAttributeNames()[indexOfCharacteristic+1] + ".");
 	}
 	
-	public void showCateGories() {
+	public void showCategories() {
 		System.out.println("It is your turn to select a category, the categories are:");
 		for(int i=0;i<model.getAttributeNames().length-1;i++) {
 			System.out.println("   " + (i+1) + ":" + model.getAttributeNames()[i+1]);

@@ -4,8 +4,7 @@
 package commandline;
 import java.sql.*;
 
-import org.postgresql.util.PSQLException;
-
+import org.postgresql.util.PSQLException; 
 public class DbConnection 
 {
 	private Connection connection = null; //connection object 
@@ -102,6 +101,26 @@ public class DbConnection
 			i = sqlCreate("commit","commit");
 		}
 	}
+
+	public int getgameNumber(){
+		return sqlCreate("select count(game_id) as games_played from games;", "select");
+	}
+
+	public int getAIwinningNumber(){
+		return sqlCreate("select count(winner_player) as ai_wins from games where winner_player <> 1;", "select");
+	}
+
+	public int getHumanwinningNumber(){
+		return sqlCreate("select count(winner_player) as human_wins from games where winner_player = 1;", "select");
+	}
+
+	public int getAverageDrawNumber(){
+		return sqlCreate("select floor(avg(draws)) as avg_draws from games;", "select");
+	}
+
+	public int getMaxRounds(){
+		return sqlCreate("select max(rounds) as max_rounds from games;", "select");
+	}
 	
 	public String statisticsToString()
 	{
@@ -156,25 +175,5 @@ public class DbConnection
 		{
 			d.player_rounds_won[i] = r[i];
 		}
-	}
-
-	public int getgameNumber(){
-		return sqlCreate("select count(game_id) as games_played from games;", "select");
-	}
-
-	public int getAIwinningNumber(){
-		return sqlCreate("select count(winner_player) as ai_wins from games where winner_player <> 1;", "select");
-	}
-
-	public int getHumanwinningNumber(){
-		return sqlCreate("select count(winner_player) as human_wins from games where winner_player = 1;", "select");
-	}
-
-	public int getAverageDrawNumber(){
-		return sqlCreate("select floor(avg(draws)) as avg_draws from games;", "select");
-	}
-
-	public int getMaxRounds(){
-		return sqlCreate("select max(rounds) as max_rounds from games;", "select");
 	}
 }

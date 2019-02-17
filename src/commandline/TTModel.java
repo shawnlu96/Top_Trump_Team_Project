@@ -16,6 +16,7 @@ public class TTModel {
 	private int AIPlayerNumber;
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	private ArrayList<Card> communalPile = new ArrayList<Card>();
+	private ArrayList<Card> cardsThisRound = new ArrayList<Card>();
 	private ArrayList<Player> players;
 	private String[] attributeNames;
 	private boolean isEnd = false;
@@ -30,7 +31,7 @@ public class TTModel {
 	private int drawNumbers = 0;
 	public static TestLog testLog;
 	
-	//...constructor
+	//...Constructor
 	public TTModel() {
 		testLog = new TestLog(this);
 		readCards(new File(DECK_PATH));
@@ -44,9 +45,21 @@ public class TTModel {
 		distributePlayerCards();			//initialise cards for each player
 		setIndexOfHumanPlayer();
 	}
-	
-	//second constructor, for testing purposes only
-	
+
+	//2nd constructor, for online mode only
+
+	public TTModel(int playerNumber){
+		testLog = new TestLog(this);
+		readCards(new File(DECK_PATH));
+		AIPlayerNumber = playerNumber;
+		Collections.shuffle(cards);			//cards randomly shuffled
+		initialisePlayers();				//initialise the player objects
+		distributePlayerCards();			//initialise cards for each player
+		setIndexOfHumanPlayer();
+	}
+
+	//third constructor, for testing purposes only
+
 	public TTModel (String test) {
 		//set the number of AI players randomly to 1-4 players, so the constructor doesn't require user keyboard input
 		Random ran = new Random();
@@ -62,7 +75,6 @@ public class TTModel {
 		distributePlayerCards();			//initialise cards for each player
 		setIndexOfHumanPlayer();
 	}
-	
 	
 	public void setNumbersOfAIPlayers() {
 		int number = 0;
@@ -99,18 +111,16 @@ public class TTModel {
 	
 	//initialise cards for all players
 	public void distributePlayerCards() {
-		int cardIndex = 0;						//the index of cards in the cards array list
+		int index = 0;						//the index of cards in the cards array list
 		for(int i=0;i<players.size();i++) {		//for each player
 			ArrayList<Card> playerCards = new ArrayList<Card>();	//temp array list for player cards initialisation created
 			for(int j=0;j<(40/players.size());j++){
-				playerCards.add(cards.get(cardIndex));				//add card to the temp array list
-				cards.get(cardIndex).setPlayerIndex(i);				//set card's player index
-				cards.get(cardIndex).setCardIndex(cardIndex);		//set card's index
-				cardIndex++;										//increment the card index
-				if(players.size()==3 && i==2 && cardIndex==39) {	//if there are 3 players and current player is the last one and current card is the last in the deck
-					playerCards.add(cards.get(cardIndex));			//give one more card to the last player
-					cards.get(cardIndex).setPlayerIndex(i);			//set card's player index
-					cards.get(cardIndex).setCardIndex(cardIndex);		//set card's index
+				playerCards.add(cards.get(index));				//add card to the temp array list
+				cards.get(index).setPlayerIndex(i);				//set card's player index
+				index++;										//increment the card index
+				if(players.size()==3 && i==2 && index==39) {	//if there are 3 players and current player is the last one and current card is the last in the deck
+					playerCards.add(cards.get(index));			//give one more card to the last player
+					cards.get(index).setPlayerIndex(i);			//set card's player index
 				}
 			}
 			players.get(i).setPlayerCards(playerCards);
@@ -126,13 +136,15 @@ public class TTModel {
 			String line;					//temp String for storing each line read
 			line = br.readLine();						//read the first line
 			attributeNames = line.split(" ");			//get characteristic name
+			int index = 1;
 			while((line = br.readLine())!=null) {
 				cardInfo = line.split(" ");
 				int[] characteristics = new int[5];		//temp int array for creating Card objects
 				for(int i=1;i<=5;i++) {
 					characteristics[i-1] = Integer.parseInt(cardInfo[i]);
 				}
-				cards.add(new Card(cardInfo[0], characteristics));
+				cards.add(new Card(cardInfo[0], characteristics, index));
+				index++;
 				testLog.addLog(cards.get(cards.size()-1).toString());		//add the cards info to the testLog
 			}
 			br.close();							//buffered reader closed
@@ -148,6 +160,14 @@ public class TTModel {
 				break;
 			}
 		}
+	}
+
+	public Card getCardByCardIndex(int cardIndex){
+		for(Card c:cards){
+			if(c.getCardIndex()==cardIndex)
+				return c;
+		}
+		return null;
 	}
 	
 	public void setAIPlayerNumber(int playerNumber) {
@@ -193,6 +213,15 @@ public class TTModel {
 	public void setIndexOfCurrentAttribute(int indexOfCurrentAttribute) {
 		this.indexOfCurrentAttribute = indexOfCurrentAttribute;
 	}
+
+	public ArrayList<Card> getCardsThisRound() {
+		return cardsThisRound;
+	}
+
+	public void initCardsThisRound() {
+		cardsThisRound = new ArrayList<>();
+	}
+
 
 	public ArrayList<Card> getCommunalPile() {
 		return communalPile;
@@ -249,12 +278,13 @@ public class TTModel {
 	public void addDrawNumbers() {
 		drawNumbers++;
 	}
+
 	public int getAIPlayerNumber() {
 		return AIPlayerNumber;
 	}
 
 	public void setPlayers(ArrayList<Player> testPlayerList) {
 		this.players = testPlayerList;
-		
+
 	}
 }

@@ -6,9 +6,10 @@ public class Card {
 	private int[] attributes;
 	private int playerIndex;
 	private int cardIndex;
-	public Card(String name, int[] characteristics) {
+	public Card(String name, int[] characteristics, int cardIndex) {
 		this.name = name;
 		this.attributes = characteristics;
+		this.cardIndex = cardIndex;
 	}
 	
 	public String toString() {

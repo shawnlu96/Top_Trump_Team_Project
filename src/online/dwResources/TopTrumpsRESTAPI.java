@@ -1,8 +1,11 @@
 package online.dwResources;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -11,11 +14,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import commandline.*;
 import online.configuration.TopTrumpsJSONConfiguration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import commandline.*;
 
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
 @Produces(MediaType.APPLICATION_JSON) // This resource returns JSON content
@@ -35,9 +38,11 @@ public class TopTrumpsRESTAPI {
 	/** A Jackson Object writer. It allows us to turn Java objects
 	 * into JSON strings easily. */
 	ObjectWriter oWriter = new ObjectMapper().writerWithDefaultPrettyPrinter();
-//	TTModel model;
-//	TTView view ;
-//	TTController controller;
+
+
+	TTModel model;
+	TTView view;
+	TTController controller;
 	DbConnection d;
 	/**
 	 * Contructor method for the REST API. This is called first. It provides
@@ -47,17 +52,95 @@ public class TopTrumpsRESTAPI {
 	 */
 	public TopTrumpsRESTAPI(TopTrumpsJSONConfiguration conf) {
 		// ----------------------------------------------------
-		// Add relevant initalization here - this involves the model, view, controller.
+		// Add relevant initalization here
 		// ----------------------------------------------------
-		d = new DbConnection();
+        d = new DbConnection();
 	}
 	
 	// ----------------------------------------------------
 	// Add relevant API methods here
 	// ----------------------------------------------------
-	
+
+    @GET
+    @Path("/playARound")
+    public void playARound(@QueryParam("index") int index){
+		model.setRoundNumber(model.getRoundNumber()+1);
+		view.showCardsThisRound();
+		controller.playRound(index);
+    }
+
 	@GET
-	@Path("/stats")
+	@Path("/autoPlay")
+	public void autoPlay(){
+		controller.startGame();
+	}
+
+	@GET
+	@Path("/getPlayerHashcode")
+	public int getPlayerHashcode(@QueryParam("playerIndex") int playerIndex){
+		return model.getPlayers().get(playerIndex).hashCode();
+	}
+
+    @GET
+	@Path("/getHighestAttributeIndex")
+	public int getHighestAttributeIndex(@QueryParam("playerIndex") int playerIndex){
+		return controller.getHighestAttributeIndex(playerIndex);
+	}
+
+	@GET
+	@Path("/getCardByIndex")
+	public String getCardByIndex(@QueryParam("index") int index) throws IOException{
+		String cardJSON = oWriter.writeValueAsString(model.getCards().get(index));
+		return cardJSON;
+	}
+
+	@GET
+	@Path("/getPlayerByIndex")
+	public String getPlayerByIndex(@QueryParam("index") int index) throws IOException{
+		String playerJSON = oWriter.writeValueAsString(model.getPlayers().get(index));
+		return playerJSON;
+	}
+
+    @GET
+    @Path("/restoreInputStream")
+    public void restoreInputStream(){
+	    System.setIn(System.in);
+    }
+
+    @GET
+    @Path("/startGame")
+    public void startGame(@QueryParam("numberOfPlayers") String numberOfPlayers) {
+        model = new TTModel(Integer.parseInt(numberOfPlayers));
+        view = new TTView(model);
+        controller = new TTController(model,view);
+        controller.setOnline(true);
+        model.setRoundNumber(0);
+        //set numberOfPlayers
+        System.out.println("game start");
+    }
+
+    @GET
+    @Path("/getModel")
+    public String getModel() throws IOException{
+	    String JSONModelString = oWriter.writeValueAsString(model);
+	    return  JSONModelString;
+    }
+
+    @GET
+    @Path("/getStatistics")
+    public String getStatistics() {
+
+        String s = "Total games:   " + d.getgameNumber() + "</br>"
+                + "Computer wins: " + d.getAIwinningNumber() + "</br>"
+                + "Human wins:    " + d.getHumanwinningNumber() + "</br>"
+                + "Average draws: " + d.getAverageDrawNumber() + "</br>"
+                + "Max rounds:    " + d.getMaxRounds();
+        return s;
+    }
+
+
+	@GET
+	@Path("/helloJSONList")
 	/**
 	 * Here is an example of a simple REST get request that returns a String.
 	 * We also illustrate here how we can convert Java objects to JSON strings.
@@ -65,12 +148,22 @@ public class TopTrumpsRESTAPI {
 	 * @throws IOException
 	 */
 	public String helloJSONList() throws IOException {
+		
+//		List<String> listOfWords = new ArrayList<String>();
+////		listOfWords.add("World!");
+//		String data = "4";
+//
+//		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		model = new TTModel(4);
 
+//		controller = new TTController(model,view);
 
 		
 		// We can turn arbatory Java objects directly into JSON strings using
 		// Jackson seralization, assuming that the Java objects are not too complex.
-		return null;
+		String listAsJSONString = oWriter.writeValueAsString(model);
+		
+		return listAsJSONString;
 	}
 	
 	@GET
@@ -85,23 +178,7 @@ public class TopTrumpsRESTAPI {
 		return "Hello "+Word;
 	}
 
-	// ----------------------------------------------------
-	// Radu's Statistics method - feel free to delete
-	// ----------------------------------------------------
 
-	@GET
-	@Path("/getStatistics")
-	public String getStatistics() throws IOException {
 
-		String s = "Total games:   " + d.getgameNumber() + "\r\n"
-				+ "<p></p>"
-				+ "Computer wins: " + d.getAIwinningNumber() + "\r\n"
-				+ "<p></p>"
-				+ "Human wins:    " + d.getHumanwinningNumber() + "\r\n"
-				+ "<p></p>"
-				+ "Average draws: " + d.getAverageDrawNumber() + "\r\n"
-				+ "<p></p>"
-				+ "Max rounds:    " + d.getMaxRounds() + "\r\n";
-		return s;
-	}
+	
 }

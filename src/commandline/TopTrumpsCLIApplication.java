@@ -41,6 +41,7 @@ public class TopTrumpsCLIApplication {
 					TTModel model = new TTModel();
 					TTView view = new TTView(model);
 					TTController controller = new TTController(model, view);
+					controller.startGame();
 					if(writeGameLogsToFile){
 						model.testLog.writeLog();
 					}

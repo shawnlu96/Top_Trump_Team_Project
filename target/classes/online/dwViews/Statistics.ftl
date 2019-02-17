@@ -20,14 +20,15 @@
 
 	</head>
 
-    <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
+    <body onload="initalize()" style="background-image: url('http://localhost:7777/assets/bg.jpg');"> <!-- Call the initalize method when the page loads -->
 
-    	<div class="container-fluid">
-			<p></p>
-			<h1> Game Statistics </h1>
-			<p></p>
-			<p id="content"></p>
-
+    	<div class="container-fluid" style="opacity: 0.7;margin-top: 5%;width: 50%">
+			<div style="border: 2px solid black; background-color: aliceblue;">
+				<p></p>
+				<h1 style="text-align: center;font-weight: bolder"> Game Statistics </h1>
+				<p></p>
+				<h2 id="content" style="text-align: center"></h2>
+			</div>
 		</div>
 		
 		<script type="text/javascript">
