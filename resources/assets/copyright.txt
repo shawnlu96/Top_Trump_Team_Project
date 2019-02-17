@@ -1,4 +1,2 @@
-https://dota2.gamepedia.com/Heroes
-
-- for personal and academic use only 
-- all pictures retrieved from here 
+All pictures have been retrieved from: https://dota2.gamepedia.com/Heroes - for personal and academic use only. 
+The following web page has been used to generate the cards from the pictures above: http://www.hearthcards.net/ - for personal and academic use only. 

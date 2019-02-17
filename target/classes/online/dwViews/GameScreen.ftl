@@ -30,6 +30,8 @@
 			{
 				width: 33.33%;
 				position: center;
+				text-align: center;
+				font-weight: bold;
 			}
 			.row
 			{
@@ -46,10 +48,6 @@
 			div {
 				outline: 1px transparent;
 			}
-			.container
-			{
-				position: absolute; top: 0; bottom: 0; left: 0; right: 0;
-			}
 		</style>
 
 		<div class="container-fluid" >
@@ -63,18 +61,18 @@
 					<button class="button" onclick="window.location.href = 'http://localhost:7777/toptrumps/game';">AGILITY</button></br>
 					<button class="button" onclick="window.location.href = 'http://localhost:7777/toptrumps/game';">INTELLIGENCE</button>
 				</div>
-				<div class = "column"><img src="/assets/40.png"/></div>
-				<div class = "column"><img src="/assets/39.png"/></div>
+				<div class = "column">You</br><img src="/assets/40.png"/></div>
+				<div class = "column">AI Player 1</br><img src="/assets/39.png"/></div>
 			</div>
 			<div class = "row">
-				<div class = "column"><img src="/assets/38.png"/></div>
-				<div class = "column"><img src="/assets/37.png"/></div>
-				<div class = "column"><img src="/assets/36.png"/></div>
+				<div class = "column">AI Player 2</br><img src="/assets/38.png"/></div>
+				<div class = "column">AI Player 3</br><img src="/assets/37.png"/></div>
+				<div class = "column">AI Player 4</br><img src="/assets/36.png"/></div>
 			</div>
 		</div>
 		
 		<script type="text/javascript">
-		
+
 			// Method that is called on page load
 			function initalize() {
 			
@@ -93,6 +91,8 @@
 			// -----------------------------------------
 		
 			// This is a reusable method for creating a CORS request. Do not edit this.
+			var xxx = "/assets/38.png";
+
 			function createCORSRequest(method, url) {
   				var xhr = new XMLHttpRequest();
   				if ("withCredentials" in xhr) {

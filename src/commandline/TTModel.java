@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TTModel {
@@ -47,9 +48,11 @@ public class TTModel {
 	//second constructor, for testing purposes only
 	
 	public TTModel (String test) {
+		//set the number of AI players randomly to 1-4 players, so the constructor doesn't require user keyboard input
+		Random ran = new Random();
+		AIPlayerNumber =  ran.nextInt(4)+1;
 		testLog = new TestLog(this);
 		readCards(new File(DECK_PATH));
-		AIPlayerNumber =  2;
 		testLog.addLine("Shuffled deck");
 		Collections.shuffle(cards);			//cards randomly shuffled
 		for(Card c:cards){					//add shuffled deck to testLog

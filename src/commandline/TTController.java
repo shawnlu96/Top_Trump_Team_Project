@@ -174,6 +174,16 @@ public class TTController {
 		}
 	}
 	
+	//method identical for the one used when playing the game, except it doesn't pause the game in order to be suitable JUNit testing
+	public void checkHumanPlayerEliminated(String test) {
+		if(!model.isHumanPlayerEliminated()) {				//if human player hasn't been marked as eliminated
+			if(model.getPlayers().get(model.getIndexOfHumanPlayer()).getPlayerCards().size()==0) {
+				model.setHumanPlayerEliminated(true);
+				System.out.println("You lose!");
+			}
+		}
+	}
+	
 	public int getAttributeIndex() {
 		int index = 0;
 		boolean isValid = false;
