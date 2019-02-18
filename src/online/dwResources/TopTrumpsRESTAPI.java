@@ -65,6 +65,7 @@ public class TopTrumpsRESTAPI {
     @Path("/playARound")
     public void playARound(@QueryParam("index") int index){
 		model.setRoundNumber(model.getRoundNumber()+1);
+		model.setIndexOfCurrentAttribute(index);
 		view.showCardsThisRound();
 		controller.playRound(index);
     }

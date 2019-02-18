@@ -134,14 +134,14 @@ function playARound(index) {
 			console.log(xhr1.readyState);
 			console.log(responseText);
 			var nameOfFormalWinner = model.players[model.indexOfRoundWinner].playerName;
-			var attrIdThisRound = getHighestAttrId(model.indexOfRoundWinner);
+			// var attrIdThisRound = getHighestAttrId(model.indexOfRoundWinner);
 			model = JSON.parse(responseText);
 			showAllCardInThisRound();
-			if (!model.isDraw) {
+			if (!model.draw) {
 				twinkleCardDiv("pos" + model.indexOfRoundWinner);
-				document.getElementById('info').innerText = "Player " + nameOfFormalWinner + " chose "+model.attributeNames[attrIdThisRound] + ". The round winner is " + model.players[model.indexOfRoundWinner].playerName  ;
+				document.getElementById('info').innerText = "Player " + nameOfFormalWinner + " chose "+model.attributeNames[model.indexOfCurrentAttribute+1] + ". The round winner is " + model.players[model.indexOfRoundWinner].playerName  ;
 			}else{
-				document.getElementById('info').innerText = "This round was a Draw, common pile now has " + model.communalPile.length + "cards.";
+				document.getElementById('info').innerText = "This round was a Draw, common pile now has " + model.communalPile.length + " cards.";
 			}
 			showCardCount();
 		}

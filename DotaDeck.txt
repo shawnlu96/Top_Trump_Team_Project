@@ -1,4 +1,4 @@
-Description Attack Armour Strength Agility Intelligence
+Description Attack Health Strength Agility Intelligence
 Abaddon 6 37 3 9 38
 Alchemist 6 28 32 12 47
 Axe 20 16 31 39 30

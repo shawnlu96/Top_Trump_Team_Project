@@ -8,9 +8,9 @@ import org.postgresql.util.PSQLException;
 public class DbConnection 
 {
 	private Connection connection = null; //connection object 
-	private final String db = "jdbc:postgresql://localhost:5432/postgres?currentSchema=public"; //yacata server and db shall be used, only need one db 
-	private final String username = "postgres";
-	private final String password = "postgres";
+	private final String db = "jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/"; //yacata server and db shall be used, only need one db postgres?currentSchema=public
+	private final String username = "m_18_2411100p";​
+	private final String password = "2411100p";
 	private int game_id = 0; //last game_id in the database
 	private int winner_player = 0;
 	private int draws = 0;
