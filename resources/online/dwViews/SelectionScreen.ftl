@@ -35,7 +35,7 @@
 		<div id="id1" style="text-align: center; color: ghostwhite">Top Trumps</div>
 	</div>
 	<br><br><br><br><br>
-	<div class="container">
+	<div class="container" id="st">
 		<div class="row text-center" style="margin-right: 30%;margin-left: 30%;">
 			<button class="btn-default btn-xl" id="modalbtn">Play</button>
 			<button class="btn-default btn-xl" onclick="location.href = 'http://localhost:7777/toptrumps/stats'">View Statistics</button>
@@ -92,7 +92,15 @@
 				alert("CORS not supported");
 			}
 			xhr.send();
-			location.href = "http://localhost:7777/toptrumps/game";
+			xhr.onload=function(){
+				var d = document.getElementById("st");
+				var s = document.createElement("iframe");
+				s.src = "http://localhost:7777/toptrumps/startGame?numberOfPlayers="+numOfPlayers;
+				s.style = "display: none";
+				d.appendChild(s);
+				location.href = "http://localhost:7777/toptrumps/game";
+
+			}
 		}
 
 		// -----------------------------------------

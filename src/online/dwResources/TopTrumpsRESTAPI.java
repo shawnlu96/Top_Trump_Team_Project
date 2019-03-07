@@ -110,8 +110,9 @@ public class TopTrumpsRESTAPI {
 
     @GET
     @Path("/startGame")
-    public void startGame(@QueryParam("numberOfPlayers") String numberOfPlayers) {
-        model = new TTModel(Integer.parseInt(numberOfPlayers));
+    public void startGame(@QueryParam("numberOfPlayers") int numberOfPlayers) {
+		System.out.println(numberOfPlayers);
+        model = new TTModel(numberOfPlayers);
         view = new TTView(model);
         controller = new TTController(model,view);
         controller.setOnline(true);

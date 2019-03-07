@@ -4,19 +4,20 @@
 package commandline;
 import java.sql.*;
 
-import org.postgresql.util.PSQLException; 
-public class DbConnection 
+import org.postgresql.util.PSQLException;
+public class DbConnection
 {
-	private Connection connection = null; //connection object 
+	private Connection connection = null; //connection object
+	//add these lines instead of the previous versions
 	private final String db = "jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/"; //yacata server and db shall be used, only need one db postgres?currentSchema=public
-	private final String username = "m_18_2411100p";​
+	private final String username = "m_18_2411100p";
 	private final String password = "2411100p";
 	private int game_id = 0; //last game_id in the database
 	private int winner_player = 0;
 	private int draws = 0;
 	private int rounds = 0;
 	private int[] player_rounds_won;
-	
+
 	public DbConnection()
 	{
 		try //First we ensure that the postgresql driver is found. 
@@ -26,7 +27,7 @@ public class DbConnection
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			System.out.println("PostgresSQL driver not found."); 
+			System.out.println("PostgresSQL driver not found.");
 			return;
 		}
 		System.out.println("Jar found.");
@@ -42,7 +43,7 @@ public class DbConnection
 		System.out.println("Controlling your database."); //This should be prrinted if it works
 		setFinalGame();
 	}
-	
+
 	private int sqlCreate(String input, String sql)
 	{
 		int i = 0;
@@ -52,7 +53,7 @@ public class DbConnection
 				Statement statement = connection.createStatement();
 				String query = input;
 				ResultSet result = null;
-				try 
+				try
 				{
 					result = statement.executeQuery(query);
 				}
@@ -79,18 +80,18 @@ public class DbConnection
 		}
 		return i;
 	}
-	
+
 	private void setFinalGame()
 	{
 		int i = sqlCreate("select max(game_id) as max_id from games;", "select");
 		game_id = i + 1;
 		System.out.println("Game_id is: " + game_id); //Stdout print. 
 	}
-	
+
 	public void insertGameValues(DbConnection d)
 	{
 		int i;
-		int[] ia = {d.game_id, d.winner_player,d.draws,d.rounds}; 
+		int[] ia = {d.game_id, d.winner_player,d.draws,d.rounds};
 		String sql_games = "insert into games values (" + ia[0] + "," + ia[1] + "," + ia[2] + "," + ia[3] + ");";
 		i = sqlCreate(sql_games,"insert");
 		i = sqlCreate("commit","commit");
@@ -121,55 +122,55 @@ public class DbConnection
 	public int getMaxRounds(){
 		return sqlCreate("select max(rounds) as max_rounds from games;", "select");
 	}
-	
+
 	public String statisticsToString()
 	{
 		String s = 	"\nTotal games:   " + sqlCreate("select count(game_id) as games_played from games;", "select") +
-					"\nComputer wins: " + sqlCreate("select count(winner_player) as ai_wins from games where winner_player <> 1;", "select") +
-					"\nHuman wins:    " + sqlCreate("select count(winner_player) as human_wins from games where winner_player = 1;", "select") +
-					"\nAverage draws: " + sqlCreate("select floor(avg(draws)) as avg_draws from games;", "select") +
-					"\nMax rounds:    " + sqlCreate("select max(rounds) as max_rounds from games;", "select");
+				"\nComputer wins: " + sqlCreate("select count(winner_player) as ai_wins from games where winner_player <> 1;", "select") +
+				"\nHuman wins:    " + sqlCreate("select count(winner_player) as human_wins from games where winner_player = 1;", "select") +
+				"\nAverage draws: " + sqlCreate("select floor(avg(draws)) as avg_draws from games;", "select") +
+				"\nMax rounds:    " + sqlCreate("select max(rounds) as max_rounds from games;", "select");
 		return s;
 	}
-	
+
 	public Connection getConnection()
 	{ //get connection to see if it is null 
 		return connection; //other classes may get connection
 	}
-	
-	public void closeConnection(DbConnection d) 
+
+	public void closeConnection(DbConnection d)
 	{
-		try 
+		try
 		{
 			d.getConnection().close(); //other classes may close connection 
-		} 
-		catch (SQLException e) 
+		}
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void setWinnerPlayer(DbConnection d, int wp)
 	{
 		d.winner_player= wp;
 	}
-	
+
 	public void setDraws(DbConnection d, int dw)
 	{
 		d.draws = dw;
 	}
-	
+
 	public void setRounds(DbConnection d, int r)
 	{
 		d.rounds = r;
 	}
-	
+
 	public void setPlayers(DbConnection d, int r)
 	{
 		d.player_rounds_won = new int[r];
 	}
-	
-	public void setPlayerRoundsWon(DbConnection d, int[] r) 
+
+	public void setPlayerRoundsWon(DbConnection d, int[] r)
 	{
 		for(int i=0; i<d.player_rounds_won.length; i++)
 		{
